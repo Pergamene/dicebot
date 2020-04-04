@@ -3,11 +3,15 @@ const { App } = require("@slack/bolt");
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  endpoints: {
+    events: '/slack/events',
+    commands: '/slack/commands' 
+  }
 });
 
 // Listen for a slash command invocation
-app.command('/r', async ({ ack, payload, context }) => {
+app.command('/roll', async ({ ack, payload, context }) => {
   // Acknowledge the command request
   ack();
 
